@@ -1,0 +1,92 @@
+/* タグ指定 */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom,rgb(162, 229, 255),rgb(53, 188, 255));
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* --------------------- */
+/* タスクタイマーボタン */
+/* --------------------- */
+.nav {
+    /* 並びして指定 */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    /* 位置指定 */
+    top: 10px;
+    left: 10px;
+    gap: 10px;
+}
+.nav-button {
+    /* ボタンデザイン指定 */
+    width: 100px;
+    height: 40px;
+    background-color: rgba(0, 170, 255, 0.7);
+    border: none;
+    border-radius: 10%;
+    /* フォント指定 */
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: 550;
+}
+
+/* --------------------- */
+/* タイマーエリア */
+/* --------------------- */
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.time-display {
+    width: 300px;
+    height: 300px;
+    /* フォント指定 */
+    color: rgb(255, 255, 255);
+    font-weight: 450;
+    font-size: 5rem;
+    border: 7px solid rgba(255, 255, 255, 0.537);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-button{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-top: 50px;
+    border: solid 3px;
+    border-color: white;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+}
+.play-button::before {
+  content: ""; /* 仮想要素を表示するための必須指定（これがないと出ない） */
+
+  position: absolute; /* 親要素の中で自由な位置に配置できるようにする */
+
+  top: 50%; /* 縦中央へ */
+  left: 60%; /* 横中央へ */
+  transform: translate(-50%, -50%); /* 真ん中に補正 */
+
+  width: 0; /* 要素の幅をなくす → borderだけで図形を作るため */
+  height: 0; /* 要素の高さをなくす → borderだけで図形を作るため */
+
+  border-top: 15px solid transparent; /* 上側の三角部分を透明にする */
+  border-bottom: 15px solid transparent; /* 下側の三角部分を透明にする */
+  border-left: 25px solid white; /* 左側だけ白にして▶三角を作る */
+}
