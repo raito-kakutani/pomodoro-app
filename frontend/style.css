@@ -7,7 +7,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom,rgb(144, 223, 255),rgb(166, 249, 255));
+  background: linear-gradient(to bottom,rgb(162, 229, 255),rgb(53, 188, 255));
 }
 
 main {
@@ -29,16 +29,17 @@ main {
     left: 10px;
     gap: 10px;
 }
-.task-button {
+.nav-button {
     /* ボタンデザイン指定 */
     width: 100px;
     height: 40px;
-    background-color: rgba(137, 137, 137, 0.7);
+    background-color: rgba(0, 170, 255, 0.7);
     border: none;
     border-radius: 10%;
     /* フォント指定 */
     font-size: 20px;
     color: rgb(255, 255, 255);
+    font-weight: 550;
 }
 
 /* --------------------- */
