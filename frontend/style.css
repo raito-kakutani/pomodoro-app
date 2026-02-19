@@ -33,7 +33,7 @@ main {
     /* ボタンデザイン指定 */
     width: 100px;
     height: 40px;
-    background-color: rgba(0, 170, 255, 0.7);
+    background-color: rgb(10, 132, 255);
     border: none;
     border-radius: 10%;
     /* フォント指定 */
