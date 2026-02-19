@@ -1,10 +1,12 @@
 let startBtn = document.getElementById("start")
-const start = () => {
-    endTime = Date.now() + 25 * 60 * 1000//ミリ秒
-    setInterval(() => {
-        const remaining = endTime - Date.now()
-        
-    }, 1000);
+let timerDisplay = document.getElementById("timer")
 
-} 
+const start = () => {
+    setInterval(() => {
+        const remaining = Math.floor((endTime - Date.now()) / 1000)
+        const minutes = String(Math.floor(remaining / 60)).padStart(2, "0")
+        const seconds = String(remaining % 60).padStart(2, "0")
+        timerDisplay.textContent = minutes + ":" + seconds
+    }, 1000);
+}
 startBtn.addEventListener("click",start)
