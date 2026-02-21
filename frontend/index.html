@@ -8,17 +8,19 @@
     <body>
         <header>
             <nav class="nav">
-                <button class="nav-button">タスク</button>
-                <button class="nav-button">タイマー</button>
+                <button class="nav__button">タスク</button>
+                <button class="nav__button">タイマー</button>
             </nav>
         </header>
 
         <main class="">
-            <section class="timer-section">
-                <div id="timer" class="time-display">
-                    25:00
+            <section class="timer">
+                <div id="timer-display" class="timer__display"></div>
+                <div>
+                    <button id="playpause-button" class="timer__play-button"></button>
+                    <button id="reset-button" class="timer__reset-button"></button>
                 </div>
-                <button id="start" class="play-button"></button>
+
             </section>
         </main>
     </body>
