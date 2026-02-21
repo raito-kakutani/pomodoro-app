@@ -29,11 +29,11 @@ main {
     left: 10px;
     gap: 10px;
 }
-.nav-button {
+.nav__button {
     /* ボタンデザイン指定 */
     width: 100px;
     height: 40px;
-    background-color: rgb(10, 132, 255);
+    background-color: rgba(10, 132, 255, 0.6);
     border: none;
     border-radius: 10%;
     /* フォント指定 */
@@ -45,12 +45,12 @@ main {
 /* --------------------- */
 /* タイマーエリア */
 /* --------------------- */
-.timer-section {
+.timer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.time-display {
+.timer__display {
     width: 300px;
     height: 300px;
     /* フォント指定 */
@@ -64,29 +64,58 @@ main {
     align-items: center;
 }
 
-.play-button{
+/* ボタン共通 */
+.timer__playpause-button,
+.timer__reset-button {
     position: relative;
     width: 60px;
     height: 60px;
     margin-top: 50px;
-    border: solid 3px;
-    border-color: white;
+    border: solid 3px white;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
 }
-.play-button::before {
-  content: ""; /* 仮想要素を表示するための必須指定（これがないと出ない） */
 
-  position: absolute; /* 親要素の中で自由な位置に配置できるようにする */
+/* 再生ボタン：▶ */
+.timer__playpause-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid white;
+}
 
-  top: 50%; /* 縦中央へ */
-  left: 60%; /* 横中央へ */
-  transform: translate(-50%, -50%); /* 真ん中に補正 */
+/* 一時停止ボタン：❚❚ */
+.timer__pause-button::before,
+.timer__pause-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 22px;
+    background-color: white;
+}
+.timer__pause-button::before {
+    left: 30%;
+}
+.timer__pause-button::after {
+    right: 30%;
+}
 
-  width: 0; /* 要素の幅をなくす → borderだけで図形を作るため */
-  height: 0; /* 要素の高さをなくす → borderだけで図形を作るため */
-
-  border-top: 15px solid transparent; /* 上側の三角部分を透明にする */
-  border-bottom: 15px solid transparent; /* 下側の三角部分を透明にする */
-  border-left: 25px solid white; /* 左側だけ白にして▶三角を作る */
+/* 停止ボタン：■ */
+.timer__reset-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background-color: white;
 }
