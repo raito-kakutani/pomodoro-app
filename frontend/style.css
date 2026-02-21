@@ -65,7 +65,8 @@ main {
 }
 
 /* ボタン共通 */
-.timer__playpause-button,
+.timer__play-button,
+.timer__pause-button,
 .timer__reset-button {
     position: relative;
     width: 60px;
@@ -77,7 +78,7 @@ main {
 }
 
 /* 再生ボタン：▶ */
-.timer__playpause-button::before {
+.timer__play-button::before {
     content: "";
     position: absolute;
     top: 50%;
