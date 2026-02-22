@@ -22,7 +22,6 @@ main {
 .nav {
     /* 並びして指定 */
     display: flex;
-    flex-direction: column;
     position: fixed;
     /* 位置指定 */
     top: 10px;
@@ -64,21 +63,23 @@ main {
     align-items: center;
 }
 
+.timer__controls {
+    height: 70px;
+    display:flex;
+    align-items:center;
+}
 /* ボタン共通 */
-.timer__play-button,
-.timer__pause-button,
-.timer__reset-button {
+.timer__button {
     position: relative;
     width: 60px;
     height: 60px;
-    margin-top: 50px;
     border: solid 3px white;
     border-radius: 50%;
     background-color: transparent;
 }
 
 /* 再生ボタン：▶ */
-.timer__play-button::before {
+.timer__button--play::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -92,8 +93,8 @@ main {
 }
 
 /* 一時停止ボタン：❚❚ */
-.timer__pause-button::before,
-.timer__pause-button::after {
+.timer__button--pause::before,
+.timer__button--pause::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -102,15 +103,15 @@ main {
     height: 22px;
     background-color: white;
 }
-.timer__pause-button::before {
+.timer__button--pause::before {
     left: 30%;
 }
-.timer__pause-button::after {
+.timer__button--pause::after {
     right: 30%;
 }
 
 /* 停止ボタン：■ */
-.timer__reset-button::before {
+.timer__button--reset::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -119,4 +120,48 @@ main {
     width: 22px;
     height: 22px;
     background-color: white;
+}
+
+.timer__settings {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    margin-left: 30px;
+}
+
+.timer__input {
+    width: 30px;
+    height: 25px;
+    font-size: larger;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border: solid 2px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    text-align: center;
+}
+
+.timer__label {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.timer__unit {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.timer__button--set {
+    width: 70px;
+    height: 30px;
+    color: white;
+    background-color:  rgba(255, 255, 255, 0.7);
+    border: solid 2px white;
+    border-radius: 10%;
+    font-size: 1rem;
+    padding: 4px 8px;
+}
+.timer__button--set:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #333;
 }
