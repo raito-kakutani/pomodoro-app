@@ -52,6 +52,7 @@ main {
 .timer__display {
     width: 300px;
     height: 300px;
+    position: relative;
     /* フォント指定 */
     color: rgb(255, 255, 255);
     font-weight: 450;
@@ -59,10 +60,8 @@ main {
     border: 7px solid rgba(255, 255, 255, 0.537);
     border-radius: 50%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
 }
 
 /* -------------------------- */
@@ -129,7 +128,10 @@ main {
     background-color: white;
 }
 .timer__status {
-    height: 1.5rem;
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
     color: rgb(255, 255, 255);
     font-size: 1.2rem;
     font-weight: 450;
