@@ -59,15 +59,22 @@ main {
     border: 7px solid rgba(255, 255, 255, 0.537);
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4px;
 }
 
+/* -------------------------- */
+/* タイマーボタンエリア */
+/* -------------------------- */
 .timer__controls {
     height: 70px;
     display:flex;
     align-items:center;
+    margin-top: 10px;
 }
+
 /* ボタン共通 */
 .timer__button {
     position: relative;
@@ -121,12 +128,27 @@ main {
     height: 22px;
     background-color: white;
 }
-
+.timer__status {
+    height: 1.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    font-weight: 450;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+/* -------------------------- */
+/* タイマー入力エリア */
+/* -------------------------- */
 .timer__settings {
     display: flex;
     align-items: end;
     gap: 4px;
-    margin-left: 30px;
+    margin-top: 10px;
+
+}
+.timer__settings--disabled {
+pointer-events: none;
+opacity: 0.4;
 }
 
 .timer__input {
@@ -141,6 +163,11 @@ main {
     text-align: center;
 }
 
+.timer__input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 .timer__label {
     color: white;
     font-size: 1.5rem;
@@ -149,19 +176,4 @@ main {
 .timer__unit {
     color: white;
     font-size: 1.5rem;
-}
-
-.timer__button--set {
-    width: 70px;
-    height: 30px;
-    color: white;
-    background-color:  rgba(255, 255, 255, 0.7);
-    border: solid 2px white;
-    border-radius: 10%;
-    font-size: 1rem;
-    padding: 4px 8px;
-}
-.timer__button--set:active {
-  transform: translateY(2px);
-  box-shadow: 0 0 0 #333;
 }
