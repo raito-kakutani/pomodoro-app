@@ -8,7 +8,6 @@ const resetBtn = document.getElementById("reset-button")
 const timerSettingsDiv = document.getElementById("timer-settigs-div")
 const workInput = document.getElementById("work-input")
 const breakInput = document.getElementById("break-input")
-const setBtn = document.getElementById("set-button")
 //------------------------
 // 状態
 //------------------------
