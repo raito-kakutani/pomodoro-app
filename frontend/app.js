@@ -1,16 +1,18 @@
 //------------------------
 //要素取得
 //------------------------
-let timerDisplay = document.getElementById("timer-display") //時刻表示
+const timerDisplay = document.getElementById("timer-time") //時刻表示
+const timerStatus = document.getElementById("timer-status")
 const playPauseBtn = document.getElementById("playpause-button")
 const resetBtn = document.getElementById("reset-button")
+const timerSettingsDiv = document.getElementById("timer-settigs-div")
 const workInput = document.getElementById("work-input")
 const breakInput = document.getElementById("break-input")
 const setBtn = document.getElementById("set-button")
 //------------------------
 // 状態
 //------------------------
-let isRunning = "stopped" //タイマー実行フラグ
+let isRunning = "stopped" // "running" | "stopped" | "paused"
 let mode = "work" // "work" | "break"
 
 //------------------------
@@ -34,12 +36,13 @@ breakInput.value = 5
 //----------------------------------
 // ロジック関数定義
 //----------------------------------
+//時刻整形
 function formatTime(totalSeconds) {
   const mins = String(Math.floor(totalSeconds / 60)).padStart(2, "0")
   const secs = String(totalSeconds % 60).padStart(2, "0")
   return mins + ":" + secs
 }
-
+//タイマー開始
 function startTimer() {
     intervalId = setInterval(() => {
         const remaining = Math.floor((endTime - Date.now()) / 1000)
@@ -55,6 +58,7 @@ function startTimer() {
                 mode = "work"
                 minutes = Number(workInput.value)
             }
+            updateStatus()
             endTime = Date.now() + minutes * 60 * 1000
             startTimer()
             return
@@ -63,6 +67,18 @@ function startTimer() {
     }, 100)
 }
 
+//状態切り替え
+function updateStatus() {
+    if (isRunning === "paused") {
+        timerStatus.textContent = "一時停止"
+    } else if (mode == "work") {
+        timerStatus.textContent = "作業中"
+    } else {
+        timerStatus.textContent = "休憩中"
+    }
+}
+
+//ボタン切り替え(再生/一時停止)
 function updateButton() {
   playPauseBtn.classList.remove("timer__button--play", "timer__button--pause")
 
@@ -72,6 +88,18 @@ function updateButton() {
     playPauseBtn.classList.add("timer__button--play")
   }
 }
+//入力制御
+function updateInputs() {
+  const disabled = isRunning === "running" || isRunning === "paused"
+  workInput.disabled = disabled
+  breakInput.disabled = disabled
+  if (disabled) {
+    timerSettingsDiv.classList.add("timer__settings--disabled")
+  } else {
+    timerSettingsDiv.classList.remove("timer__settings--disabled")
+  }
+}
+
 
 //-----------------------------------------
 // スタートボタン
@@ -101,6 +129,8 @@ const playPause = () => {
         startTimer()
     }
     updateButton()
+    updateInputs()
+    updateStatus()
 }
 playPauseBtn.addEventListener("click",playPause)
 
@@ -108,6 +138,7 @@ playPauseBtn.addEventListener("click",playPause)
 // リセットボタン
 //-----------------------------------------
 const reset = () => {
+    timerStatus.textContent = " "
     //作動中なら作動中フラグをオフにする
     isRunning = "stopped"
     mode = "work"
@@ -115,6 +146,7 @@ const reset = () => {
     clearInterval(intervalId)
     timerDisplay.textContent = formatTime(minutes * 60)
     updateButton()
+    updateInputs()
 }
 resetBtn.addEventListener("click",reset)
 
@@ -123,7 +155,7 @@ resetBtn.addEventListener("click",reset)
 //-----------------------------------------
 const workInputSet = () =>{
     minutes = Number(workInput.value)
-    timerDisplay.textContent = formatTime(Number(workInput.value) * 60)
+    timerDisplay.textContent = formatTime(minutes * 60)
 }
 workInput.addEventListener("input",workInputSet)
 

@@ -15,14 +15,17 @@
 
         <main class="timer">
             <!-- 時刻表示 -->
-            <div id="timer-display" class="timer__display"></div>
+            <div id="timer-display" class="timer__display">
+                <span id="timer-time"> </span>
+                <div id="timer-status" class="timer__status"></div>
+            </div>
             <!-- 再生/一時停止/停止ボタン -->
             <div class="timer__controls">
                 <button id="playpause-button" class="timer__button timer__button--play"></button>
                 <button id="reset-button" class="timer__button timer__button--reset"></button>
             </div>
             <!-- 時間設定欄 -->
-            <div class="timer__settings">
+            <div id="timer-settigs-div" class="timer__settings">
                 <!-- 作業時間設定 -->
                 <label class="timer__label">作業時間:</label>
                 <input id="work-input" class="timer__input">
