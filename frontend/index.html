@@ -8,12 +8,15 @@
     <body>
         <header>
             <nav class="nav">
-                <button class="nav__button">タスク</button>
-                <button class="nav__button">タイマー</button>
+                <button id="nav-tasks" class="nav__button">タスク</button>
+                <button id="nav-timer" class="nav__button nav__button--active">タイマー</button>
             </nav>
         </header>
 
-        <main class="timer">
+        <main id="page-tasks" class="page tasks">
+        </main>
+
+        <main id="page-timer" class="page page--active timer">
             <!-- 時刻表示 -->
             <div id="timer-display" class="timer__display">
                 <span id="timer-time"> </span>

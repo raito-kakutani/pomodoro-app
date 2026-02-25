@@ -39,13 +39,26 @@ main {
     font-size: 20px;
     color: rgb(255, 255, 255);
     font-weight: 550;
+    cursor: pointer;
+}
+.nav__button--active {
+    background-color: rgba(10, 132, 255, 1);
+}
+
+/* --------------------- */
+/* ページ切り替え */
+/* --------------------- */
+.page {
+    display: none;
+}
+.page--active {
+    display: flex;
 }
 
 /* --------------------- */
 /* タイマーエリア */
 /* --------------------- */
 .timer {
-    display: flex;
     flex-direction: column;
     align-items: center;
 }

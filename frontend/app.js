@@ -170,3 +170,24 @@ breakInput.addEventListener("keydown", blurOnEnter)
 const selectOnFocus = (e) => e.target.select()
 workInput.addEventListener("focus", selectOnFocus)
 breakInput.addEventListener("focus", selectOnFocus)
+
+//-----------------------------------------
+// タブ切り替え
+//-----------------------------------------
+const navTasksBtn = document.getElementById("nav-tasks")
+const navTimerBtn = document.getElementById("nav-timer")
+const pageTimer = document.getElementById("page-timer")
+const pageTasks = document.getElementById("page-tasks")
+
+navTasksBtn.addEventListener("click", () => {
+    pageTasks.classList.add("page--active")
+    pageTimer.classList.remove("page--active")
+    navTasksBtn.classList.add("nav__button--active")
+    navTimerBtn.classList.remove("nav__button--active")
+})
+navTimerBtn.addEventListener("click", () => {
+    pageTimer.classList.add("page--active")
+    pageTasks.classList.remove("page--active")
+    navTimerBtn.classList.add("nav__button--active")
+    navTasksBtn.classList.remove("nav__button--active")
+})
