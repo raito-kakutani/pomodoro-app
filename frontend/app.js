@@ -1,3 +1,31 @@
+//-----------------------------------------
+// タブ切り替えタスク&タイマー
+//-----------------------------------------
+const navTasksBtn = document.getElementById("nav-tasks")
+const navTimerBtn = document.getElementById("nav-timer")
+const pageTimer = document.getElementById("page-timer")
+const pageTasks = document.getElementById("page-tasks")
+
+navTasksBtn.addEventListener("click", () => {
+    pageTasks.classList.add("page--active")
+    pageTimer.classList.remove("page--active")
+    navTasksBtn.classList.add("nav__button--active")
+    navTimerBtn.classList.remove("nav__button--active")
+})
+navTimerBtn.addEventListener("click", () => {
+    pageTimer.classList.add("page--active")
+    pageTasks.classList.remove("page--active")
+    navTimerBtn.classList.add("nav__button--active")
+    navTasksBtn.classList.remove("nav__button--active")
+})
+
+//------------------------
+//------------------------
+// タイマー定義
+//------------------------
+//------------------------
+
+
 //------------------------
 //要素取得
 //------------------------
@@ -170,3 +198,44 @@ breakInput.addEventListener("keydown", blurOnEnter)
 const selectOnFocus = (e) => e.target.select()
 workInput.addEventListener("focus", selectOnFocus)
 breakInput.addEventListener("focus", selectOnFocus)
+
+//------------------------
+//------------------------
+// タスク定義
+//------------------------
+//------------------------
+const addInput = document.getElementById("add-input")
+const todoList = document.getElementById("todo-list")
+
+addInput.addEventListener("keydown",(e) =>{
+    if(!addInput.value) return
+    if(e.key === "Enter" ) {
+        //リスト要素作成
+        const li = document.createElement("li")
+        li.className = "task-item"
+        //✓ボックス
+        const checkbox = document.createElement("input")
+        checkbox.type = "checkbox"
+        checkbox.className = "task-checkbox"
+        checkbox.addEventListener("change", () => {
+            li.classList.toggle("task-item--done", checkbox.checked)
+        })
+        // テキスト
+        const span = document.createElement("span")
+        span.textContent = addInput.value
+        span.className = "task-text"
+        // 削除ボタン
+        const button = document.createElement("button")
+        button.textContent = "×"
+        button.className = "task-delete"
+        button.addEventListener("click",() => {
+            li.remove()
+        })
+        //タスク要素に紐づけ
+        li.appendChild(checkbox)
+        li.appendChild(span)
+        li.appendChild(button)
+        todoList.appendChild(li)
+        addInput.value = ""
+    }
+})

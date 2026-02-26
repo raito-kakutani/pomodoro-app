@@ -8,12 +8,21 @@
     <body>
         <header>
             <nav class="nav">
-                <button class="nav__button">タスク</button>
-                <button class="nav__button">タイマー</button>
+                <button id="nav-tasks" class="nav__button">タスク</button>
+                <button id="nav-timer" class="nav__button nav__button--active">タイマー</button>
             </nav>
         </header>
 
-        <main class="timer">
+        <main id="page-tasks" class="page tasks">
+            <div class="task-container">
+                <ul id="todo-list" class="todo-list"></ul>
+                <div class="task-add">
+                    <input id="add-input" class="add-input" placeholder="タスクを追加">
+                </div>
+            </div>
+        </main>
+
+        <main id="page-timer" class="page page--active timer">
             <!-- 時刻表示 -->
             <div id="timer-display" class="timer__display">
                 <span id="timer-time"> </span>
