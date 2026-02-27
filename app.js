@@ -180,7 +180,16 @@ resetBtn.addEventListener("click",reset)
 //-----------------------------------------
 // 時間セットInput
 //-----------------------------------------
+// 全角数字を半角に変換し、数字以外を除去
+function normalizeNumericInput(input) {
+    const normalized = input.value
+        .replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+        .replace(/[^0-9]/g, "")
+    if (input.value !== normalized) input.value = normalized
+}
+
 const workInputSet = () =>{
+    normalizeNumericInput(workInput)
     minutes = Number(workInput.value)
     timerDisplay.textContent = formatTime(minutes * 60)
     localStorage.setItem("workMinutes",workInput.value)
@@ -188,6 +197,7 @@ const workInputSet = () =>{
 workInput.addEventListener("input",workInputSet)
 
 breakInput.addEventListener("input",() => {
+    normalizeNumericInput(breakInput)
     localStorage.setItem("breakMinutes",breakInput.value)
 })
 
