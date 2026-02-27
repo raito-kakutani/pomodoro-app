@@ -55,10 +55,10 @@ let minutes = null
 //----------------------------------
 // 初期設定
 //----------------------------------
-minutes = 25
+minutes = localStorage.getItem("workMinutes") ?  Number(localStorage.getItem("workMinutes")) : 25
 timerDisplay.textContent = formatTime(minutes * 60)
-workInput.value = 25
-breakInput.value = 5
+workInput.value = minutes
+breakInput.value = localStorage.getItem("breakMinutes") ? Number(localStorage.getItem("breakMinutes")) : 5
 
 //----------------------------------
 // ロジック関数定義
@@ -178,13 +178,18 @@ const reset = () => {
 resetBtn.addEventListener("click",reset)
 
 //-----------------------------------------
-// タイマーセットボタン
+// 時間セットInput
 //-----------------------------------------
 const workInputSet = () =>{
     minutes = Number(workInput.value)
     timerDisplay.textContent = formatTime(minutes * 60)
+    localStorage.setItem("workMinutes",workInput.value)
 }
 workInput.addEventListener("input",workInputSet)
+
+breakInput.addEventListener("input",() => {
+    localStorage.setItem("breakMinutes",breakInput.value)
+})
 
 // Enter押したらonBlur
 const blurOnEnter = (e) => {
@@ -207,35 +212,56 @@ breakInput.addEventListener("focus", selectOnFocus)
 const addInput = document.getElementById("add-input")
 const todoList = document.getElementById("todo-list")
 
-addInput.addEventListener("keydown",(e) =>{
-    if(!addInput.value) return
-    if(e.key === "Enter" ) {
-        //リスト要素作成
+let tasks = JSON.parse(localStorage.getItem("tasks")) ?? []
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+}
+
+function renderTasks() {
+    todoList.innerHTML = ""
+    tasks.forEach(task => {
         const li = document.createElement("li")
         li.className = "task-item"
-        //✓ボックス
+        if (task.done) li.classList.add("task-item--done")
+        // ✓ボックス
         const checkbox = document.createElement("input")
         checkbox.type = "checkbox"
         checkbox.className = "task-checkbox"
+        checkbox.checked = task.done
         checkbox.addEventListener("change", () => {
+            task.done = checkbox.checked
             li.classList.toggle("task-item--done", checkbox.checked)
+            saveTasks()
         })
         // テキスト
         const span = document.createElement("span")
-        span.textContent = addInput.value
+        span.textContent = task.task
         span.className = "task-text"
         // 削除ボタン
         const button = document.createElement("button")
         button.textContent = "×"
         button.className = "task-delete"
-        button.addEventListener("click",() => {
-            li.remove()
+        button.addEventListener("click", () => {
+            tasks = tasks.filter(t => t.idx !== task.idx)
+            saveTasks()
+            renderTasks()
         })
-        //タスク要素に紐づけ
         li.appendChild(checkbox)
         li.appendChild(span)
         li.appendChild(button)
         todoList.appendChild(li)
+    })
+}
+
+addInput.addEventListener("keydown", (e) => {
+    if (!addInput.value) return
+    if (e.key === "Enter") {
+        tasks.push({ idx: Date.now().toString(), task: addInput.value, done: false })
+        saveTasks()
+        renderTasks()
         addInput.value = ""
     }
 })
+
+renderTasks()
