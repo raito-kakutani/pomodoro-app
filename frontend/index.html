@@ -12,16 +12,9 @@
                 <button id="nav-timer" class="nav__button nav__button--active">タイマー</button>
             </nav>
         </header>
-
-        <main id="page-tasks" class="page tasks">
-            <div class="task-container">
-                <ul id="todo-list" class="todo-list"></ul>
-                <div class="task-add">
-                    <input id="add-input" class="add-input" placeholder="タスクを追加">
-                </div>
-            </div>
-        </main>
-
+        <!-- ============ -->
+        <!-- タイマータブ -->
+        <!-- ============ -->
         <main id="page-timer" class="page page--active timer">
             <!-- 時刻表示 -->
             <div id="timer-display" class="timer__display">
@@ -43,6 +36,17 @@
                 <label class="timer__label">休憩:</label>
                 <input id="break-input" class="timer__input">
                 <label class="timer__unit">分</label>
+            </div>
+        </main>
+        <!-- ============ -->
+        <!-- タスクタブ -->
+        <!-- ============ -->
+        <main id="page-tasks" class="page tasks">
+            <div class="task-container">
+                <ul id="todo-list" class="todo-list"></ul>
+                <div class="task-add">
+                    <input id="add-input" class="add-input" placeholder="タスクを追加">
+                </div>
             </div>
         </main>
     </body>
